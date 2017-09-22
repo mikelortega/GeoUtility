@@ -1,0 +1,7 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <DeployDeviceID>8295B225-DECD-427F-AF3E-A9CBCF8B2F90</DeployDeviceID>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <EnableSigning>false</EnableSigning>
+  </PropertyGroup>
+</Project>

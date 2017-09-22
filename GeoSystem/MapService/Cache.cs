@@ -21,7 +21,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+//using System.Drawing;
 using GeoUtility.GeoSystem.Base;
 
 namespace GeoUtility.GeoSystem
@@ -55,7 +55,7 @@ namespace GeoUtility.GeoSystem
                     
                     internal static bool _enabled = false;
                     internal static int _size = 50;
-                    internal static Dictionary<MapService, Image> _cache;                       // Beinhaltet MapService-Objekt und dazugehörendes Bild
+//                    internal static Dictionary<MapService, Image> _cache;                       // Beinhaltet MapService-Objekt und dazugehörendes Bild
                     internal static SortedList<long, MapService> _lruList;                // Eine LRU-Liste
                     internal static CacheEqualityMode _equalityMode = CacheEqualityMode.Image;  // Vergleichsmodus, s. Enumeration
                     
@@ -81,12 +81,12 @@ namespace GeoUtility.GeoSystem
                                 _enabled = value;
                                 if (value == true)
                                 {
-                                    _cache = new Dictionary<MapService, Image>(_size);
+//                                    _cache = new Dictionary<MapService, Image>(_size);
                                     _lruList = new SortedList<long, MapService>();
                                 }
                                 else
                                 {
-                                    _cache = null;
+//                                    _cache = null;
                                     _lruList = null;
                                 }
                             }
@@ -111,32 +111,32 @@ namespace GeoUtility.GeoSystem
 
                                 if (_enabled == true)
                                 {
-                                    if ((_size < _cache.Count) || (_size < _lruList.Count)) Shrink(_size);
+//                                    if ((_size < _cache.Count) || (_size < _lruList.Count)) Shrink(_size);
                                 }
                             }
                         }
                     }
 
                     /// <summary><para>Gibt die Anzahl der gespeicherten Bilder im Cache zurück.</para></summary>
-                    public static int Count 
-                    { 
-                        get 
-                        {
-                            if ((_enabled == false) || (_cache == null)) return 0;
-                            else return _cache.Count; 
-                        } 
-                    }
+//                    public static int Count 
+//                    { 
+//                        get 
+//                        {
+//                            if ((_enabled == false) || (_cache == null)) return 0;
+//                            else return _cache.Count; 
+//                        } 
+//                    }
 
                     /// <summary><para>Gibt den internen Cachespeicher zurück.</para></summary>
-                    internal static Dictionary<MapService, Image> ImageCache { get { return _cache; } }
+//                    internal static Dictionary<MapService, Image> ImageCache { get { return _cache; } }
 
 
                     /// <summary><para>Gibt eine Auflistung der im Cache vorhandenen <see cref="MapService"/>-Objekte 
                     /// zurück, die mit den gespeicherten Bildern assoziiert sind.</para></summary>
-                    public static Dictionary<MapService, Image>.KeyCollection Maps { get { return _cache.Keys; } }
+//                    public static Dictionary<MapService, Image>.KeyCollection Maps { get { return _cache.Keys; } }
 
                     /// <summary><para>Gibt eine Auflistung der im Cache gespeicherten Bilder zurück.</para></summary>
-                    public static Dictionary<MapService, Image>.ValueCollection Images { get { return _cache.Values; } }
+//                    public static Dictionary<MapService, Image>.ValueCollection Images { get { return _cache.Values; } }
 
                     /// <summary><para>Legt fest, wie interne Vergleichsoperationen durchgeführt werden. 
                     /// Nähere Informationen unter <see cref="CacheEqualityMode"/>.</para></summary>
@@ -156,19 +156,19 @@ namespace GeoUtility.GeoSystem
                     /// <param name="item">Ein <see cref="CacheItem"/>-Objekt, das hizugefügt werden soll.</param>
                     internal static void Add(CacheItem item)
                     {
-                        if (_cache.Count >= _size)
-                        {
-                            if (Shrink(_size - 1) == false) Clear();
-                        }
+//                        if (_cache.Count >= _size)
+//                        {
+//                            if (Shrink(_size - 1) == false) Clear();
+//                        }
 
-                        _cache[item.Map] = item.SatImage;
+//                        _cache[item.Map] = item.SatImage;
                         _lruList.Add(DateTime.Now.Ticks, item.Map);
                     }
 
                     /// <summary><para>Löscht alle Elemente aus dem Cache.</para></summary>
                     internal static void Clear()
                     {
-                        _cache = new Dictionary<MapService, Image>(_size);
+//                        _cache = new Dictionary<MapService, Image>(_size);
                         _lruList = new SortedList<long, MapService>();
                     }
 
@@ -176,16 +176,16 @@ namespace GeoUtility.GeoSystem
                     /// 
                     /// <param name="item">Ein <see cref="MapService"/>-Objekt, das das Bild repräsentiert.</param>
                     /// <returns>True, wenn ein passendes Bild vorhanden ist, sonst False.</returns>
-                    internal static bool Contains(MapService item)
-                    {
-                        return _cache.ContainsKey(item);
-                    }
+//                    internal static bool Contains(MapService item)
+//                    {
+//                        return _cache.ContainsKey(item);
+//                    }
 
                     /// <summary><para>Verkleinert die Cachegröße.</para></summary>
                     /// 
                     /// <param name="size">Neue Größe.</param>
                     /// <returns>True, wenn der Vorgang erfolgreich war, sonst False.</returns>
-                    public static bool Shrink(int size)
+/*                    public static bool Shrink(int size)
                     {
                         CacheEqualityMode em = _equalityMode;
                         _equalityMode = CacheEqualityMode.MapService;
@@ -235,12 +235,12 @@ namespace GeoUtility.GeoSystem
                         _equalityMode = em;
                         return result;
                     }
-
+*/
                     /// <summary><para>Löscht ein Bild aus dem Cache.</para></summary>
                     /// 
                     /// <param name="map">Ein <see cref="MapService"/>-Objekt, das das Bild repräsentiert.</param>
                     /// <returns>True, wenn ein Bild gelöscht wurde, sonst False.</returns>
-                    public static bool Remove(MapService map)
+/*                    public static bool Remove(MapService map)
                     {
                         CacheEqualityMode em = _equalityMode;
                         _equalityMode = CacheEqualityMode.MapService;
@@ -265,18 +265,18 @@ namespace GeoUtility.GeoSystem
                         _equalityMode = em;
                         return (key != -1);
                     }
-
+*/
                     /// <summary><para>Die Methode <see cref="GetImage"/> versucht ein entsprechendes Bild im Cache 
                     /// zu finden. Ist kein Bild vorhanden, gibt die Methode null zurück.</para></summary>
                     /// 
                     /// <param name="item">Ein <see cref="MapService"/>-Objekt, welches ein Bild repräsentiert.</param>
                     /// <returns>Das Satellitenbild, oder null, wenn kein passendes Bild gefunden wurde.</returns>
-                    public static Image GetImage(MapService item)
-                    {
-                        Image image = null;
-                        _cache.TryGetValue(item, out image);
-                        return image;
-                    }
+//                    public static Image GetImage(MapService item)
+//                    {
+//                        Image image = null;
+//                        _cache.TryGetValue(item, out image);
+//                        return image;
+//                    }
                 }
 
                 #endregion ==================== Methoden ====================
@@ -290,7 +290,7 @@ namespace GeoUtility.GeoSystem
                 /// und einem dazugehörenden Bild.</para></summary>
                 public class CacheItem
                 {
-                    internal Image _image;
+//                    internal Image _image;
                     internal MapService _map;
 
 
@@ -302,16 +302,16 @@ namespace GeoUtility.GeoSystem
                     /// 
                     /// <param name="map">Das <see cref="MapService"/>-Objekt.</param>
                     /// <param name="image">Das Satellitenbild als Typ <see cref="Image"/>-Objekt.</param>
-                    public CacheItem(MapService map, Image image)
-                    {
-                        _image = image;
-                        _map = map.MemberwiseClone();
-                    }
+//                    public CacheItem(MapService map, Image image)
+//                    {
+//                        _image = image;
+//                        _map = map.MemberwiseClone();
+//                    }
 
 
 
                     /// <summary><para>Das Satellitenbild.</para></summary>
-                    public Image SatImage { get { return _image; } set { _image = value; } }
+//                    public Image SatImage { get { return _image; } set { _image = value; } }
 
                     /// <summary><para>Das <see cref="MapService"/>-Objekt.</para></summary>
                     public MapService Map { get { return _map; } set { _map = value; } }

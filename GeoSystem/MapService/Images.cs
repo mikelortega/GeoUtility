@@ -20,7 +20,7 @@
 
 
 using System;
-//using System.Drawing;
+using System.Drawing;
 using System.IO;
 using System.Net;
 using GeoUtility.GeoSystem.Base;
@@ -112,11 +112,11 @@ namespace GeoUtility.GeoSystem
                 /// </example>
                 /// 
                 /// <returns>Ein Bild vom allgemeinen Typ <see cref="System.Drawing.Image"/>.</returns>
-//                public Image Load()
-//                {
-//                    if (Parent.Center == true) return Load(true, 0, true);
-//                    return Load(this.Parent.Tile, true);
-//                }
+                public Image Load()
+                {
+                    if (Parent.Center == true) return Load(true, 0, true);
+                    return Load(this.Parent.Tile, true);
+                }
 
                 /// <summary><para>Die überladene Funktion <see cref="Load(int, bool)"/> lädt das Satellitenbild, welches durch das aktuelle  
                 /// <see cref="MapService"/>-Objekt definiert ist. Es wird ein Bild in der Größe der übergebenen Parameter 
@@ -139,7 +139,7 @@ namespace GeoUtility.GeoSystem
                 /// <param name="size">Größe des zurückgegebenen Bildes in Pixel (20 - 2000)</param>
                 /// <param name="mark">Position markieren</param>
                 /// <returns>Ein Bild vom allgemeinen Typ <see cref="System.Drawing.Image"/>.</returns>
-/*                public Image Load(int size, bool mark)
+                public Image Load(int size, bool mark)
                 {
                     if (size < 20) size = 20; else if (size > 2000) size = 2000;
 
@@ -183,17 +183,17 @@ namespace GeoUtility.GeoSystem
                     }
                     return null;
                 }
-*/
+
                 /// <summary><para>Die überladene Funktion <see cref="Load()"/> lädt das Satellitenbild, welches durch das aktuelle  
                 /// <see cref="MapService"/>-Objekt definiert ist.</para></summary>
                 /// 
                 /// <param name="silent">Legt fest, ob im Fehlerfall eine Exception weitergegeben wird (false) oder nicht (true).</param>
                 /// <returns>Ein Bild vom allgemeinen Typ <see cref="System.Drawing.Image"/>.</returns>
-//                public Image Load(bool silent)
-//                {
-//                    if (Parent.Center == true) return Load(true, 0, silent);
-//                    return Load(this.Parent.Tile, silent);
-//                }
+                public Image Load(bool silent)
+                {
+                    if (Parent.Center == true) return Load(true, 0, silent);
+                    return Load(this.Parent.Tile, silent);
+                }
 
 
                 /// <summary><para>Die Funktion <see cref="Load(bool, int, bool)"/> gibt ein Satellitenbild zurück, so dass die
@@ -211,7 +211,7 @@ namespace GeoUtility.GeoSystem
                 /// <param name="threshold">Abweichung vom Mittelpunkt in Bildpunkten (Pixel), ab der eine Normalisierung durchgeführt werden soll. Mögliche Werte liegen zwischen 0 (immer normalisieren) bis 100 (keine Normalisierung).</param>
                 /// <param name="silent">Legt fest, ob im Fehlerfall eine Exception weitergegeben wird (false) oder nicht (true).</param>
                 /// <returns>Ein Bild vom Typ <see cref="System.Drawing.Image"/> mit einem eventuell zentrierten Koordinatenpunkt.</returns>
-/*                public Image Load(bool centered, int threshold, bool silent)
+                public Image Load(bool centered, int threshold, bool silent)
                 {
                     Image image = new Bitmap(TILE_SIZE, TILE_SIZE);
                     int shiftX, shiftY, shift, radius;
@@ -252,7 +252,7 @@ namespace GeoUtility.GeoSystem
 
                     return image;
                 }
-*/
+
 
                 /// <summary><para>Die überladene Funktion <see cref="Load(Info.MapServiceTileBase, bool)"/> lädt das Satellitenbild, welches durch den Parameter vom Typ 
                 /// <see cref="MapService.Info.MapServiceTileBase"/> festgelegt wurde von dem gewünschten MapService-Provider. 
@@ -261,7 +261,7 @@ namespace GeoUtility.GeoSystem
                 /// <param name="tile">Ein Objekt vom Typ <see cref="MapService.Info.MapServiceTileBase"/>, das über die <see cref="MapService.Tile"/>-Eigenschaft des <see cref="MapService"/>-Objektes erhalten werden kann.</param>
                 /// <param name="silent">Legt fest, ob im Fehlerfall eine Exception weitergegeben wird (false) oder nicht (true).</param>
                 /// <returns>Ein Bild vom allgemeinen Typ <see cref="System.Drawing.Image"/>.</returns>
-/*                public Image Load(Info.MapServiceTileBase tile, bool silent)
+                public Image Load(Info.MapServiceTileBase tile, bool silent)
                 {
                     Image image = null;
                     Stream data = null;
@@ -322,14 +322,14 @@ namespace GeoUtility.GeoSystem
                     }
                     return image;
                 }
-*/
+
                 /// <summary>
                 /// Versucht zu erkennen, ob das vom Virtual Earth Dienst zurückgegebene Bild ein Fehlerbild oder
                 /// ein reguläres Satellitenbild ist. Andere Provider geben einen HTTP 404 Status zurück.
                 /// </summary>
                 /// <param name="image">Das zu überprüfende Bild</param>
                 /// <returns>True, wenn es sich um ein Satellitenbild handelt. False, wenn es ein Fehlerbild ist.</returns>
-/*                private bool ValidImage(Image image)
+                private bool ValidImage(Image image)
                 {
                     bool isValid = false;
                     if (image != null)
@@ -365,7 +365,7 @@ namespace GeoUtility.GeoSystem
                     }
                     return isValid;
                 }
-*/
+
 
                 /// <summary><para>Die überladene Funktion <see cref="Merge(Image[,])"/> verschmilzt mehrere Bilder, und gibt ein 
                 /// Bild als Typ <see cref="System.Drawing.Image"/> zurück. Die Bilder werden in einem Image-Array übergeben. 
@@ -378,10 +378,10 @@ namespace GeoUtility.GeoSystem
                 /// 
                 /// <param name="array">Ein Array aus <see cref="System.Drawing.Image"/>-Objekten in der Form Image[Zeilen, Spalten].</param>
                 /// <returns>Ein verschmolzenes <see cref="System.Drawing.Image"/>-Objekt.</returns>
-//                public Image Merge(Image[,] array)
-//                { 
-//                    return Merge(array, new Rectangle(0, 0, TILE_SIZE, TILE_SIZE));
-//                }
+                public Image Merge(Image[,] array)
+                { 
+                    return Merge(array, new Rectangle(0, 0, TILE_SIZE, TILE_SIZE));
+                }
 
 
                 /// <summary><para>Die überladene Funktion <see cref="Merge(Image[,], Rectangle)"/> verschmilzt mehrere Bilder, und gibt ein 
@@ -409,7 +409,7 @@ namespace GeoUtility.GeoSystem
                 /// <param name="array">Ein Array aus <see cref="System.Drawing.Image"/>-Objekten in der Form Image[Zeilen, Spalten].</param>
                 /// <param name="rect">Der <see cref="System.Drawing.Rectangle"/>-Parameter legt die Höhe und Breite eines Einzelbildes fest.</param>
                 /// <returns>Ein verschmolzenes <see cref="System.Drawing.Image"/>-Objekt.</returns>
-/*                public Image Merge(Image[,] array, Rectangle rect)
+                public Image Merge(Image[,] array, Rectangle rect)
                 {
                     int rows = array.GetUpperBound(0);
                     int cols = array.GetUpperBound(1);
@@ -430,7 +430,7 @@ namespace GeoUtility.GeoSystem
                     //graph.Save();
                     return image;
                 }
-*/
+
 
                 /// <summary><para>Die Funktion ruft Einzelbilder aus der Umgebung des aktuellen Satellitenbilds ab, und fügt sie zu 
                 /// einem Bild zusammen. Der Parameter vom Typ <see cref="Info.MapDirection"/> bestimmt die Richtung, in der 
@@ -457,7 +457,7 @@ namespace GeoUtility.GeoSystem
                 /// <param name="direction">Bestimmt die Richtung in der die Bilder zusammengefügt werden sollen.</param>
                 /// <param name="extended">Wenn True, wird ein erweiterter Umgebungsbereich geladen.</param>
                 /// <returns>Ein zusammengesetztes Bild vom Typ <see cref="System.Drawing.Image"/></returns>
-/*                public Image Area(Info.MapDirection direction, bool extended)
+                public Image Area(Info.MapDirection direction, bool extended)
                 {
                     Image[,] array = null;
                     //MapService maps = Parent.MemberwiseClone();
@@ -517,7 +517,7 @@ namespace GeoUtility.GeoSystem
 
                     return this.Merge(array);
                 }
-*/
+
 
                 /// <summary><para>Die Methode gibt zusätzlich zur <see cref="Area(Info.MapDirection, bool)"/>-Methode den Bildpunkt (x/y)
                 /// auf dem Satellitenbild zurück, der der Koordinate entspricht.</para></summary>
@@ -526,7 +526,7 @@ namespace GeoUtility.GeoSystem
                 /// <param name="extended">Wenn True, wird ein erweiterter Umgebungsbereich geladen.</param>
                 /// <param name="pointInArea">Der out-Parameter gibt den Bildpunkt der Koordinate im Umgebungsbild zurück.</param>
                 /// <returns>Ein zusammengesetztes Bild vom Typ <see cref="System.Drawing.Image"/></returns>
-/*                public Image Area(Info.MapDirection direction, bool extended, out GeoUtility.GeoSystem.Helper.GeoPoint pointInArea)
+                public Image Area(Info.MapDirection direction, bool extended, out GeoUtility.GeoSystem.Helper.GeoPoint pointInArea)
                 {
                     GeoUtility.GeoSystem.Helper.GeoPoint gp = Parent.TileInfo.GeoPosition;
                     pointInArea = new GeoUtility.GeoSystem.Helper.GeoPoint();
@@ -554,7 +554,7 @@ namespace GeoUtility.GeoSystem
 
                     return Area(direction, extended);
                 }
-*/
+
                 #endregion ==================== Methoden ====================
 
             }
